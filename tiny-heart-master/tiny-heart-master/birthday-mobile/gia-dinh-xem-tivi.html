@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tối quây quần</title>
+  <style>
+    :root {
+      --dvnt-wall: #241d2c;
+      --dvnt-wall-2: #2e2438;
+      --dvnt-wood: #5b3a24;
+      --dvnt-wood-dark: #45291a;
+      --dvnt-sofa: #4b6a72;
+      --dvnt-sofa-dark: #38505a;
+      --dvnt-amber: #f2a65a;
+      --dvnt-amber-soft: #f6c98c;
+      --dvnt-cream: #f5efe6;
+      --dvnt-cream-dim: #cdc4b8;
+      --dvnt-screen: #0c0c12;
+      --dvnt-teal-deep: #23414a;
+      --dvnt-radius: 14px;
+      --dvnt-font-display: 'Fraunces', Georgia, serif;
+      --dvnt-font-body: 'Nunito Sans', -apple-system, sans-serif;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: #14101a;
+      font-family: var(--dvnt-font-body);
+      color: var(--dvnt-cream);
+    }
+
+    .dvnt-app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 60px;
+    }
+
+    .dvnt-eyebrow {
+      font-family: var(--dvnt-font-body);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--dvnt-amber-soft);
+      margin: 0 0 6px;
+    }
+
+    .dvnt-title {
+      font-family: var(--dvnt-font-display);
+      font-weight: 600;
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 0 0 6px;
+      text-align: center;
+    }
+
+    .dvnt-subtitle {
+      color: var(--dvnt-cream-dim);
+      font-size: 15px;
+      margin: 0 0 28px;
+      text-align: center;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    /* ===================== ROOM ===================== */
+    .dvnt-room {
+      position: relative;
+      width: min(980px, 100%);
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 90% at 50% -10%, var(--dvnt-wall-2) 0%, var(--dvnt-wall) 55%, #1a1522 100%);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      animation: dvnt-room-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transform: perspective(1400px) rotateX(var(--dvnt-tiltY, 0deg)) rotateY(var(--dvnt-tiltX, 0deg));
+      transition: transform 0.4s ease-out;
+    }
+
+    @keyframes dvnt-room-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(18px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* soft floating dust / sparkle drifting up through the room */
+    .dvnt-dust-field {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .dvnt-dust {
+      position: absolute;
+      bottom: -10px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--dvnt-amber-soft);
+      opacity: 0;
+      filter: blur(0.3px);
+      animation: dvnt-dust-rise linear infinite;
+    }
+
+    @keyframes dvnt-dust-rise {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.65;
+      }
+
+      90% {
+        opacity: 0.35;
+      }
+
+      100% {
+        transform: translateY(-360px) translateX(var(--dvnt-drift, 20px));
+        opacity: 0;
+      }
+    }
+
+    .dvnt-dust:nth-child(1) {
+      left: 8%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 9s;
+      animation-delay: 0s;
+      --dvnt-drift: 14px;
+    }
+
+    .dvnt-dust:nth-child(2) {
+      left: 22%;
+      width: 5px;
+      height: 5px;
+      animation-duration: 12s;
+      animation-delay: 1.4s;
+      --dvnt-drift: -18px;
+    }
+
+    .dvnt-dust:nth-child(3) {
+      left: 38%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 8s;
+      animation-delay: 2.6s;
+      --dvnt-drift: 10px;
+    }
+
+    .dvnt-dust:nth-child(4) {
+      left: 55%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 11s;
+      animation-delay: 0.8s;
+      --dvnt-drift: -12px;
+    }
+
+    .dvnt-dust:nth-child(5) {
+      left: 68%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 10s;
+      animation-delay: 3.2s;
+      --dvnt-drift: 20px;
+    }
+
+    .dvnt-dust:nth-child(6) {
+      left: 80%;
+      width: 5px;
+      height: 5px;
+      animation-duration: 13s;
+      animation-delay: 1.8s;
+      --dvnt-drift: -16px;
+    }
+
+    .dvnt-dust:nth-child(7) {
+      left: 92%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 9.5s;
+      animation-delay: 2.2s;
+      --dvnt-drift: 8px;
+    }
+
+    .dvnt-dust:nth-child(8) {
+      left: 47%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 14s;
+      animation-delay: 0.3s;
+      --dvnt-drift: -10px;
+    }
+
+    .dvnt-wall {
+      position: relative;
+      padding: 40px 32px 0;
+      min-height: 360px;
+      animation: dvnt-fade-up 0.8s ease-out 0.15s both;
+    }
+
+    @keyframes dvnt-fade-up {
+      0% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* fairy lights across the top */
+    .dvnt-lights {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 6px;
+      margin-bottom: 18px;
+    }
+
+    .dvnt-light {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--dvnt-amber-soft);
+      box-shadow: 0 0 8px 2px rgba(246, 201, 140, 0.7);
+      animation: dvnt-twinkle 2.6s ease-in-out infinite, dvnt-hue-drift 7s ease-in-out infinite;
+    }
+
+    .dvnt-light:nth-child(odd) {
+      animation-delay: 0.6s, 1.4s;
+    }
+
+    .dvnt-light:nth-child(3n) {
+      animation-delay: 1.2s, 2.8s;
+    }
+
+    .dvnt-light:nth-child(4n) {
+      background: #f2896a;
+      box-shadow: 0 0 8px 2px rgba(242, 137, 106, 0.7);
+    }
+
+    .dvnt-light:nth-child(5n) {
+      background: #f6d98c;
+      box-shadow: 0 0 8px 2px rgba(246, 217, 140, 0.7);
+    }
+
+    @keyframes dvnt-twinkle {
+
+      0%,
+      100% {
+        opacity: 0.45;
+        transform: scale(0.85);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes dvnt-hue-drift {
+
+      0%,
+      100% {
+        filter: hue-rotate(0deg);
+      }
+
+      50% {
+        filter: hue-rotate(18deg);
+      }
+    }
+
+    /* frames on the wall */
+    .dvnt-frame {
+      position: absolute;
+      width: 46px;
+      height: 60px;
+      border: 3px solid #6b5a3f;
+      border-radius: 3px;
+      background: linear-gradient(160deg, #3a3226, #241f1a);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .dvnt-frame--a {
+      top: 36px;
+      left: 8%;
+      transform: rotate(-4deg);
+    }
+
+    .dvnt-frame--b {
+      top: 30px;
+      right: 10%;
+      transform: rotate(3deg);
+      width: 40px;
+      height: 40px;
+    }
+
+    .dvnt-plant {
+      position: absolute;
+      bottom: 0;
+      right: 3%;
+      width: 70px;
+    }
+
+    .dvnt-plant-pot {
+      width: 46px;
+      height: 40px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, #a0522d, #6e3a1c);
+      border-radius: 4px 4px 10px 10px;
+    }
+
+    .dvnt-plant-leaf {
+      position: absolute;
+      left: 50%;
+      width: 10px;
+      height: 46px;
+      background: #4f7a52;
+      border-radius: 50% 50% 50% 0;
+      transform-origin: bottom center;
+    }
+
+    .dvnt-plant-leaf:nth-child(1) {
+      bottom: 34px;
+      transform: translateX(-26px) rotate(-24deg);
+      background: #3f6b45;
+    }
+
+    .dvnt-plant-leaf:nth-child(2) {
+      bottom: 40px;
+      transform: translateX(-6px) rotate(-4deg);
+    }
+
+    .dvnt-plant-leaf:nth-child(3) {
+      bottom: 34px;
+      transform: translateX(14px) rotate(20deg);
+      background: #588a5c;
+    }
+
+    /* ===================== TV ===================== */
+    .dvnt-tv-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      margin-bottom: -6px;
+      animation: dvnt-fade-up 0.8s ease-out 0.3s both;
+    }
+
+    .dvnt-tv {
+      width: min(560px, 86%);
+      background: linear-gradient(160deg, #1c1a22, #0f0d13);
+      border-radius: 16px;
+      padding: 14px 14px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+        0 20px 40px rgba(0, 0, 0, 0.55);
+      transition: box-shadow 0.6s ease;
+    }
+
+    .dvnt-screen-glow {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 640px;
+      height: 260px;
+      background: radial-gradient(closest-side, rgba(242, 166, 90, 0.28), transparent 70%);
+      filter: blur(6px);
+      pointer-events: none;
+      animation: dvnt-glow-breathe 5s ease-in-out infinite;
+      z-index: 1;
+      transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+    }
+
+    @keyframes dvnt-glow-breathe {
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .dvnt-room--playing .dvnt-screen-glow {
+      width: 760px;
+      height: 320px;
+      animation: dvnt-glow-breathe-vivid 3.2s ease-in-out infinite;
+    }
+
+    @keyframes dvnt-glow-breathe-vivid {
+
+      0%,
+      100% {
+        opacity: 0.75;
+        filter: blur(6px) hue-rotate(0deg);
+      }
+
+      50% {
+        opacity: 1;
+        filter: blur(9px) hue-rotate(10deg);
+      }
+    }
+
+    .dvnt-room--playing .dvnt-tv {
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 40px rgba(242, 166, 90, 0.25),
+        0 20px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    @keyframes dvnt-flicker {
+      0% {
+        opacity: 0;
+        filter: brightness(2.4);
+      }
+
+      8% {
+        opacity: 1;
+        filter: brightness(0.4);
+      }
+
+      16% {
+        opacity: 0.7;
+        filter: brightness(1.8);
+      }
+
+      24% {
+        opacity: 1;
+        filter: brightness(0.7);
+      }
+
+      32% {
+        opacity: 1;
+        filter: brightness(1.3);
+      }
+
+      100% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+    }
+
+    .dvnt-screen-flicker {
+      animation: dvnt-flicker 0.7s steps(2, end) both;
+    }
+
+    .dvnt-screen {
+      position: relative;
+      aspect-ratio: 16/9;
+      width: 100%;
+      background: var(--dvnt-screen);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dvnt-screen video,
+    .dvnt-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      object-fit: cover;
+    }
+
+    .dvnt-screen-standby {
+      text-align: center;
+      padding: 20px;
+      color: #6b6878;
+    }
+
+    .dvnt-screen-standby-icon {
+      font-family: var(--dvnt-font-display);
+      font-size: 34px;
+      margin-bottom: 6px;
+      color: #4c4959;
+    }
+
+    .dvnt-screen-standby p {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .dvnt-room.dvnt-room--off .dvnt-screen-glow {
+      opacity: 0;
+    }
+
+    .dvnt-room.dvnt-room--off .dvnt-sofa-area {
+      filter: brightness(0.55) saturate(0.7);
+    }
+
+    .dvnt-room.dvnt-room--off .dvnt-lamp-glow {
+      opacity: 0.35;
+    }
+
+    .dvnt-tv-foot {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 10px;
+    }
+
+    .dvnt-tv-foot span {
+      width: 10px;
+      height: 4px;
+      background: #34303e;
+      border-radius: 2px;
+    }
+
+    /* ===================== SOFA AREA ===================== */
+    .dvnt-sofa-area {
+      position: relative;
+      padding: 26px 24px 0;
+      transition: filter 0.5s ease;
+      animation: dvnt-fade-up 0.8s ease-out 0.45s both;
+    }
+
+    .dvnt-rug {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      height: 34px;
+      background: radial-gradient(closest-side, var(--dvnt-teal-deep), transparent 75%);
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .dvnt-lamp {
+      position: absolute;
+      right: 6%;
+      bottom: 66px;
+      width: 30px;
+      z-index: 3;
+    }
+
+    .dvnt-lamp-shade {
+      width: 34px;
+      height: 22px;
+      background: linear-gradient(180deg, var(--dvnt-amber-soft), var(--dvnt-amber));
+      border-radius: 4px 4px 16px 16px;
+      margin: 0 auto;
+    }
+
+    .dvnt-lamp-pole {
+      width: 4px;
+      height: 46px;
+      background: #55503f;
+      margin: 0 auto;
+    }
+
+    .dvnt-lamp-base {
+      width: 26px;
+      height: 6px;
+      background: #3c3830;
+      border-radius: 3px;
+      margin: 0 auto;
+    }
+
+    .dvnt-lamp-glow {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(closest-side, rgba(246, 201, 140, 0.5), transparent 72%);
+      filter: blur(2px);
+      transition: opacity 0.5s ease;
+      z-index: -1;
+      animation: dvnt-glow-breathe 4s ease-in-out infinite;
+    }
+
+    .dvnt-couch {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0;
+      margin: 0 auto;
+      max-width: 820px;
+    }
+
+    .dvnt-couch-back {
+      position: absolute;
+      bottom: 34px;
+      left: 2%;
+      right: 2%;
+      height: 92px;
+      background: linear-gradient(180deg, var(--dvnt-sofa), var(--dvnt-sofa-dark));
+      border-radius: 22px 22px 0 0;
+      z-index: 1;
+    }
+
+    .dvnt-couch-seat {
+      position: relative;
+      z-index: 2;
+      width: 96%;
+      height: 60px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, var(--dvnt-sofa-dark), #2c4148);
+      border-radius: 16px 16px 6px 6px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding-bottom: 6px;
+    }
+
+    .dvnt-cushion {
+      width: 15%;
+      height: 26px;
+      background: linear-gradient(160deg, #587a83, #3f5b64);
+      border-radius: 8px;
+    }
+
+    .dvnt-family {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 30px;
+      flex-wrap: nowrap;
+    }
+
+    .dvnt-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      animation: dvnt-person-in 0.6s ease-out both, dvnt-bounce 2.4s ease-in-out 0.6s infinite;
+      transform-origin: bottom center;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(1) {
+      animation-delay: 0.5s, 1.1s;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(2) {
+      animation-delay: 0.6s, 1.3s;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(3) {
+      animation-delay: 0.7s, 0.9s;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(4) {
+      animation-delay: 0.8s, 1.5s;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(5) {
+      animation-delay: 0.9s, 1.0s;
+    }
+
+    .dvnt-family .dvnt-person:nth-child(6) {
+      animation-delay: 1.0s, 1.4s;
+    }
+
+    .dvnt-family-floor .dvnt-person:nth-child(1) {
+      animation-delay: 1.1s, 1.2s;
+    }
+
+    .dvnt-family-floor .dvnt-person:nth-child(2) {
+      animation-delay: 1.2s, 0.8s;
+    }
+
+    .dvnt-family-floor .dvnt-person:nth-child(3) {
+      animation-delay: 1.3s, 1.6s;
+    }
+
+    .dvnt-family-floor .dvnt-person:nth-child(4) {
+      animation-delay: 1.4s, 1.05s;
+    }
+
+    .dvnt-person:nth-child(2n) {
+      animation-name: dvnt-person-in, dvnt-bounce-alt;
+    }
+
+    @keyframes dvnt-person-in {
+      0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.9);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes dvnt-bounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      30% {
+        transform: translateY(-5px) rotate(-3deg);
+      }
+
+      60% {
+        transform: translateY(-1px) rotate(2deg);
+      }
+    }
+
+    @keyframes dvnt-bounce-alt {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      35% {
+        transform: translateY(-3px) rotate(3deg);
+      }
+
+      65% {
+        transform: translateY(-6px) rotate(-2deg);
+      }
+    }
+
+    .dvnt-person-head {
+      animation: dvnt-nod 2.8s ease-in-out infinite;
+    }
+
+    .dvnt-person:nth-child(3n) .dvnt-person-head {
+      animation-duration: 3.4s;
+      animation-direction: reverse;
+    }
+
+    @keyframes dvnt-nod {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-7deg);
+      }
+
+      60% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .dvnt-bubble {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px) scale(0.6);
+      background: var(--dvnt-cream);
+      color: #2a1a0d;
+      font-size: 13px;
+      line-height: 1;
+      padding: 4px 7px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 6;
+      white-space: nowrap;
+    }
+
+    .dvnt-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 4px 4px 0;
+      border-style: solid;
+      border-color: var(--dvnt-cream) transparent transparent;
+    }
+
+    .dvnt-bubble--show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px) scale(1);
+    }
+
+    .dvnt-person-head {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-bottom: -4px;
+    }
+
+    .dvnt-person-body {
+      width: 36px;
+      height: 36px;
+      border-radius: 16px 16px 4px 4px;
+    }
+
+    .dvnt-person--girl1 .dvnt-person-head {
+      background: #d9a97b;
+    }
+
+    .dvnt-person--girl1 .dvnt-person-body {
+      background: #c9668a;
+    }
+
+    .dvnt-person--guy1 .dvnt-person-head {
+      background: #c68f63;
+    }
+
+    .dvnt-person--guy1 .dvnt-person-body {
+      background: #4d6e8a;
+      width: 40px;
+      height: 40px;
+    }
+
+    .dvnt-person--girl2 .dvnt-person-head {
+      background: #dcb488;
+      width: 19px;
+      height: 19px;
+    }
+
+    .dvnt-person--girl2 .dvnt-person-body {
+      background: #5c9e7a;
+      width: 28px;
+      height: 26px;
+    }
+
+    .dvnt-person--guy2 .dvnt-person-head {
+      background: #e3b98c;
+      width: 19px;
+      height: 19px;
+    }
+
+    .dvnt-person--guy2 .dvnt-person-body {
+      background: #e8a65a;
+      width: 28px;
+      height: 26px;
+    }
+
+    .dvnt-person--guy3 .dvnt-person-head {
+      background: #cf9c74;
+    }
+
+    .dvnt-person--guy3 .dvnt-person-body {
+      background: #b5654a;
+      width: 32px;
+      height: 32px;
+    }
+
+    .dvnt-person--girl3 .dvnt-person-head {
+      background: #d3a685;
+    }
+
+    .dvnt-person--girl3 .dvnt-person-body {
+      background: #5b7f9e;
+      width: 32px;
+      height: 32px;
+    }
+
+    .dvnt-person--guy4 .dvnt-person-head {
+      background: #cbb499;
+    }
+
+    .dvnt-person--guy4 .dvnt-person-body {
+      background: #a97d4b;
+      width: 38px;
+      height: 38px;
+    }
+
+    .dvnt-person--girl4 .dvnt-person-head {
+      background: #d9c1a6;
+    }
+
+    .dvnt-person--girl4 .dvnt-person-body {
+      background: #8a6a8f;
+      width: 36px;
+      height: 36px;
+    }
+
+    /* people sitting on the rug, in front of the couch */
+    .dvnt-family-floor {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      margin: -6px 0 8px;
+    }
+
+    .dvnt-person--floor .dvnt-person-body {
+      width: 34px;
+      height: 20px;
+      border-radius: 14px 14px 8px 8px / 12px 12px 8px 8px;
+    }
+
+    .dvnt-person--floor .dvnt-person-head {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dvnt-dog {
+      width: 34px;
+      height: 22px;
+      background: #b98a55;
+      border-radius: 40% 40% 20% 20%;
+      position: relative;
+      margin-left: -2px;
+    }
+
+    .dvnt-dog::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      top: 2px;
+      width: 14px;
+      height: 12px;
+      background: #b98a55;
+      border-radius: 50% 50% 40% 40%;
+    }
+
+    .dvnt-floor {
+      height: 26px;
+      background: linear-gradient(180deg, var(--dvnt-wood), var(--dvnt-wood-dark));
+    }
+
+    /* ===================== CONTROLS ===================== */
+    .dvnt-controls {
+      width: min(560px, 100%);
+      margin-top: 26px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--dvnt-radius);
+      padding: 18px 20px 20px;
+      animation: dvnt-fade-up 0.8s ease-out 0.6s both;
+    }
+
+    .dvnt-controls-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .dvnt-controls-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .dvnt-field {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .dvnt-label {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--dvnt-cream-dim);
+    }
+
+    .dvnt-input {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 9px 11px;
+      color: var(--dvnt-cream);
+      font-size: 14px;
+      font-family: var(--dvnt-font-body);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .dvnt-input:focus-visible {
+      outline: 2px solid var(--dvnt-amber);
+      outline-offset: 1px;
+      border-color: var(--dvnt-amber);
+      box-shadow: 0 0 0 4px rgba(242, 166, 90, 0.15);
+    }
+
+    .dvnt-input[type="file"] {
+      padding: 7px;
+      cursor: pointer;
+    }
+
+    .dvnt-btn {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--dvnt-cream);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-family: var(--dvnt-font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.25s ease;
+    }
+
+    .dvnt-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .dvnt-btn:active {
+      transform: scale(0.97);
+    }
+
+    .dvnt-btn:focus-visible {
+      outline: 2px solid var(--dvnt-amber);
+      outline-offset: 2px;
+    }
+
+    .dvnt-btn--primary {
+      background: linear-gradient(160deg, var(--dvnt-amber-soft), var(--dvnt-amber));
+      color: #2a1a0d;
+      border-color: transparent;
+      position: relative;
+      box-shadow: 0 0 0 rgba(242, 166, 90, 0);
+      animation: dvnt-btn-pulse 3.4s ease-in-out infinite;
+    }
+
+    .dvnt-btn--primary:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 4px 18px rgba(242, 166, 90, 0.45);
+      transform: translateY(-2px);
+    }
+
+    @keyframes dvnt-btn-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(242, 166, 90, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(242, 166, 90, 0);
+      }
+    }
+
+    .dvnt-btn--power {
+      margin-left: auto;
+    }
+
+    .dvnt-btn--power[data-on="true"] {
+      background: linear-gradient(160deg, #7fd39c, #4fa876);
+      color: #0e2216;
+      border-color: transparent;
+    }
+
+    .dvnt-hint {
+      font-size: 12px;
+      color: var(--dvnt-cream-dim);
+      margin: 10px 2px 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 560px) {
+
+      .dvnt-family,
+      .dvnt-family-floor {
+        gap: 2px;
+      }
+
+      .dvnt-person-head {
+        width: 17px;
+        height: 17px;
+      }
+
+      .dvnt-person-body {
+        width: 22px !important;
+        height: 26px !important;
+      }
+
+      .dvnt-person--floor .dvnt-person-body {
+        width: 22px !important;
+        height: 14px !important;
+      }
+
+      .dvnt-dog {
+        width: 22px;
+        height: 15px;
+      }
+
+      .dvnt-lamp {
+        display: none;
+      }
+    }
+
+    /* OVERLAY CHỜ PHÁT VIDEO */
+    .dvnt-start-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 16, 26, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.4s ease;
+    }
+
+    .dvnt-start-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .dvnt-start-box {
+      background: linear-gradient(160deg, #2e2438, #241d2c);
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      animation: dvnt-fade-up 0.5s ease-out;
+    }
+
+    .dvnt-start-box h2 {
+      margin: 0 0 10px;
+      font-family: var(--dvnt-font-display);
+      font-size: 24px;
+      color: var(--dvnt-cream);
+    }
+
+    .dvnt-start-box p {
+      margin: 0 0 24px;
+      color: var(--dvnt-cream-dim);
+      font-size: 15px;
+    }
+
+    .dvnt-start-btn {
+      background: linear-gradient(160deg, var(--dvnt-amber-soft), var(--dvnt-amber));
+      color: #2a1a0d;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 99px;
+      font-family: var(--dvnt-font-body);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(242, 166, 90, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .dvnt-start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(242, 166, 90, 0.5);
+    }
+
+    /* NÚT CHUYỂN TRANG */
+    .dvnt-next-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--dvnt-cream);
+      padding: 10px 24px;
+      border-radius: 99px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 15px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.2s ease, background 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .dvnt-next-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+      animation: dvnt-next-pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes dvnt-next-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transform: scale(1);
+      }
+
+      50% {
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.5);
+        transform: scale(1.06);
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    .dvnt-next-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dvnt-start-overlay" id="startOverlay">
+    <div class="dvnt-start-box">
+      <h2>Tới rạp rồi!!</h2>
+      <p>Xin mời cả nhà xem phim hạaaa</p>
+      <button class="dvnt-start-btn" id="startBtn">Đồng ý</button>
+    </div>
+  </div>
+
+  <!-- Thay link trang tiếp theo vào href, ví dụ daulau.html hay tim.html -->
+  <a href="tim.html" class="dvnt-next-btn" id="nextBtn">Qua ➔</a>
+
+  <div class="dvnt-app">
+    <div class="dvnt-room dvnt-room--playing" id="dvntRoom">
+      <div class="dvnt-dust-field" aria-hidden="true">
+        <span class="dvnt-dust"></span><span class="dvnt-dust"></span><span class="dvnt-dust"></span>
+        <span class="dvnt-dust"></span><span class="dvnt-dust"></span><span class="dvnt-dust"></span>
+        <span class="dvnt-dust"></span><span class="dvnt-dust"></span>
+      </div>
+
+      <div class="dvnt-wall">
+        <div class="dvnt-lights">
+          <span class="dvnt-light"></span><span class="dvnt-light"></span><span class="dvnt-light"></span>
+          <span class="dvnt-light"></span><span class="dvnt-light"></span><span class="dvnt-light"></span>
+          <span class="dvnt-light"></span><span class="dvnt-light"></span><span class="dvnt-light"></span>
+          <span class="dvnt-light"></span><span class="dvnt-light"></span><span class="dvnt-light"></span>
+        </div>
+
+        <div class="dvnt-frame dvnt-frame--a"></div>
+        <div class="dvnt-frame dvnt-frame--b"></div>
+
+        <div class="dvnt-plant">
+          <div class="dvnt-plant-leaf"></div>
+          <div class="dvnt-plant-leaf"></div>
+          <div class="dvnt-plant-leaf"></div>
+          <div class="dvnt-plant-pot"></div>
+        </div>
+
+        <div class="dvnt-tv-wrap">
+          <div class="dvnt-screen-glow"></div>
+          <div class="dvnt-tv">
+            <div class="dvnt-screen" id="dvntScreen">
+              <!-- Đổi "ten_video_cua_ban.mp4" thành tên file video của bạn trong cùng thư mục -->
+              <video id="myVideo" src="./music/10namsau.mp4" controls loop playsinline></video>
+            </div>
+            <div class="dvnt-tv-foot"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dvnt-sofa-area">
+        <div class="dvnt-rug"></div>
+
+        <div class="dvnt-lamp">
+          <div class="dvnt-lamp-glow" id="dvntLampGlow"></div>
+          <div class="dvnt-lamp-shade"></div>
+          <div class="dvnt-lamp-pole"></div>
+          <div class="dvnt-lamp-base"></div>
+        </div>
+
+        <div class="dvnt-family">
+          <div class="dvnt-person dvnt-person--guy4">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--guy1">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--girl1">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--girl4">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--guy3">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--girl3">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-dog"></div>
+        </div>
+
+        <div class="dvnt-family-floor">
+          <div class="dvnt-person dvnt-person--floor dvnt-person--guy2">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--floor dvnt-person--girl2">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--floor dvnt-person--guy2">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+          <div class="dvnt-person dvnt-person--floor dvnt-person--girl2">
+            <div class="dvnt-person-head"></div>
+            <div class="dvnt-person-body"></div>
+          </div>
+        </div>
+
+        <div class="dvnt-couch">
+          <div class="dvnt-couch-back"></div>
+          <div class="dvnt-couch-seat">
+            <div class="dvnt-cushion"></div>
+            <div class="dvnt-cushion"></div>
+            <div class="dvnt-cushion"></div>
+            <div class="dvnt-cushion"></div>
+            <div class="dvnt-cushion"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dvnt-floor"></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var room = document.getElementById('dvntRoom');
+      var screen = document.getElementById('dvntScreen');
+      var standby = document.getElementById('dvntStandby');
+
+      function clearScreenMedia() {
+        var media = screen.querySelectorAll('video, iframe');
+        media.forEach(function (el) { el.remove(); });
+        room.classList.remove('dvnt-room--playing');
+      }
+
+      function showStandby(message) {
+        clearScreenMedia();
+        standby.querySelector('p').textContent = message || 'Chưa có video — dán link rồi bấm Phát trên TV nhé';
+        standby.style.display = 'block';
+      }
+
+      function triggerFlicker(el) {
+        el.classList.add('dvnt-screen-flicker');
+        el.addEventListener('animationend', function handler() {
+          el.classList.remove('dvnt-screen-flicker');
+          el.removeEventListener('animationend', handler);
+        });
+      }
+
+      function extractYouTubeId(url) {
+        var patterns = [
+          /youtu\.be\/([a-zA-Z0-9_-]{6,})/,
+          /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{6,})/,
+          /youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/,
+          /youtube\.com\/shorts\/([a-zA-Z0-9_-]{6,})/
+        ];
+        for (var i = 0; i < patterns.length; i++) {
+          var m = url.match(patterns[i]);
+          if (m) return m[1];
+        }
+        return null;
+      }
+
+      function playFromUrl(url) {
+        if (!url) return;
+        clearScreenMedia();
+        standby.style.display = 'none';
+        room.classList.add('dvnt-room--playing');
+
+        var ytId = extractYouTubeId(url);
+        if (ytId) {
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+          iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          screen.appendChild(iframe);
+          triggerFlicker(iframe);
+          return;
+        }
+
+        var video = document.createElement('video');
+        video.src = url;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.onerror = function () {
+          showStandby('Không phát được link này — thử link mp4 trực tiếp hoặc link YouTube nhé');
+        };
+        screen.appendChild(video);
+        triggerFlicker(video);
+      }
+
+      // playFromUrl(url) is exposed for later use if a control UI is added back
+      window.dvntPlayFromUrl = playFromUrl;
+
+      // subtle parallax tilt of the room following the cursor
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+        room.addEventListener('mousemove', function (e) {
+          var rect = room.getBoundingClientRect();
+          var px = (e.clientX - rect.left) / rect.width - 0.5;
+          var py = (e.clientY - rect.top) / rect.height - 0.5;
+          room.style.setProperty('--dvnt-tiltX', (px * 2.2).toFixed(2) + 'deg');
+          room.style.setProperty('--dvnt-tiltY', (py * -2.2).toFixed(2) + 'deg');
+        });
+        room.addEventListener('mouseleave', function () {
+          room.style.setProperty('--dvnt-tiltX', '0deg');
+          room.style.setProperty('--dvnt-tiltY', '0deg');
+        });
+      }
+      // playful chat bubbles popping up over random friends
+      var people = Array.prototype.slice.call(document.querySelectorAll('.dvnt-person'));
+      var bubbleContent = [
+        ' dăm dăm lên nha', 'Ảnh hoài luôn', 'Thế mà hay', ' dui hặc sự',
+        'Haha buồn cười quá', '1 2 3 zooo', ' Dô sao nào', 'Nữa đi!',
+        'Ảnh hài', 'Hoi nách nha', 'Chịu luôn', 'Mắc ái quá diii', '😄', 'Im coi', '😆', 'kkkkk', 'Có thể ra luôn'
+      ];
+      people.forEach(function (p) {
+        var b = document.createElement('div');
+        b.className = 'dvnt-bubble';
+        b.setAttribute('aria-hidden', 'true');
+        p.appendChild(b);
+      });
+
+      function popRandomBubble() {
+        if (!people.length) return;
+        var person = people[Math.floor(Math.random() * people.length)];
+        var bubble = person.querySelector('.dvnt-bubble');
+        if (!bubble || bubble.classList.contains('dvnt-bubble--show')) return;
+        bubble.textContent = bubbleContent[Math.floor(Math.random() * bubbleContent.length)];
+        bubble.classList.add('dvnt-bubble--show');
+        setTimeout(function () {
+          bubble.classList.remove('dvnt-bubble--show');
+        }, 1600);
+      }
+
+      if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+        setInterval(popRandomBubble, 1500);
+        setTimeout(popRandomBubble, 900);
+      }
+    })();
+
+    // Xử lý nút Đồng ý phát video
+    document.getElementById('startBtn').addEventListener('click', function () {
+      var overlay = document.getElementById('startOverlay');
+      overlay.classList.add('hidden'); // Ẩn màn hình thông báo
+
+      var video = document.getElementById('myVideo');
+      if (video) {
+        video.play().catch(function (e) {
+          console.log('Trình duyệt chặn phát video:', e);
+        });
+      }
+
+      // Hiện nút chuyển trang sau 3 giây (3000 milliseconds)
+      setTimeout(function () {
+        var nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+          nextBtn.classList.add('show');
+        }
+      }, 3000);
+    });
+  </script>
+
+</body>
+
+</html>

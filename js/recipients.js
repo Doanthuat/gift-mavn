@@ -136,7 +136,7 @@ var RECIPIENTS = {
       name: 'Vy',
       paragraphs: [ // html
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng em với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
-        'Chị tuy có vẻ ngoài hơi hướng nội hơi nhát xíu với giao diện có chút ít nói và lạnh lùng. Nhưng đừng để vẻ bề ngoài ấy đánh lừa, bởi bên trong ấm áp và luôn âm thầm đối xử chân thành với mọi người. Cảm ơn chị vì thời gian qua.'
+        'Chị tuy có vẻ ngoài hơi hướng nội hơi nhát xíu với giao diện có chút ít nói và lạnh lùng. Nhưng chị rất hiền và dễ thương, bởi bên trong ấm áp và luôn âm thầm đối xử chân thành với mọi người. Cảm ơn chị vì thời gian qua.'
       ],
       signed: '14/02/2000<i class="em-svg em-heart"></i>', // html
       nextButton: 'Tiếp tục nào',
@@ -178,7 +178,7 @@ var RECIPIENTS = {
       name: 'Chị Ngân',
       paragraphs: [ // html
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng Chị với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
-        'Chị xinh đẹp với tuyệt chiêu hay cọc và nóng tính khiến ai cũng phải nể chừng. Thế nhưng mà, lớp vỏ bọc sừng sỏ ấy chỉ để che giấu một tâm hồn cực kỳ dễ thương, hài hước và vô tư bên trong mà thôi. Cảm ơn chị vì thời gian qua.'
+        'Chị xinh đẹp với tuyệt chiêu hay cọc và nóng tính khiến ai cũng phải sợ hãiiii. Thế nhưng mà, lớp vỏ bọc sừng sỏ ấy chỉ để che giấu một tâm hồn cực kỳ dễ thương, hài hước và vô tư bên trong mà thôi. Cảm ơn chị vì thời gian qua.'
       ],
       signed: '25/04/1999 <i class="em-svg em-heart"></i>', // html
       nextButton: 'Tiếp tục nào',
@@ -220,7 +220,7 @@ var RECIPIENTS = {
       name: 'Cát Tiên',
       paragraphs: [
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng em với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
-        'Em xinh xắn, đáng yêu với những nét tính cách đầy thú vị. Có lúc em thẹn thùng, e ngại như nụ hoa mỏng manh, nhưng cũng có lúc đầy bất ngờ phá cách. Trên hết, Em là một cô gái vô cùng hiểu chuyện và mang tấm lòng nhân hậu. Cảm ơn em thời gian qua.'
+        'Em xinh xắn, đáng yêu với những sức hút lạ lùng. Có lúc em thẹn thùng, e ngại như nụ hoa mỏng manh, nhưng cũng có lúc đầy bất ngờ phá cách. Trên hết, Em là một cô gái vô cùng hiểu chuyện và mang tấm lòng nhân hậu. Cảm ơn em thời gian qua.'
       ],
       signed: '17/08/2003<i class="em-svg em-heart"></i>', // html
       nextButton: 'Tiếp tục nào',
@@ -428,7 +428,7 @@ var RECIPIENTS = {
       name: 'Em Hảo',
       paragraphs: [
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng em với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
-        'Cảnh báo: Mức độ xinh xắn và dễ thương của em có tính "sát thương" cực cao, đủ sức làm rung rinh bất cứ ai! Dù bình thường Hảo khá ít nói, nhưng lúc cần thiết lại vô cùng rôm rả, đặc biệt là em rất hiểu chuyện và tinh tế. Cảm ơn em khoảng thời gian qua.'
+        'Cảnh báo mức độ xinh xắn và dễ thương của em có tính "sát thương" cực cao, đủ sức làm rung rinh bất cứ ai! Dù ít gặp em và bình thường Hảo khá ít nói, nhưng lúc cần thiết lại vô cùng rôm rả, đặc biệt là em rất hiểu chuyện và tinh tế. Cảm ơn em khoảng thời gian qua.'
       ],
       signed: '06/11/2005<i class="em-svg em-heart"></i>', // html
       nextButton: 'Tiếp tục nào',
@@ -469,7 +469,7 @@ var RECIPIENTS = {
       name: 'Em Thiên',
       paragraphs: [
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng em với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
-        'Cô gái đa tài vừa xinh đẹp, dễ thương lại cực kỳ giỏi giang, tháo vát trong công việc. Dù thỉnh thoảng áp lực khiến em hơi cọc cằn, nhưng khả năng chuyển đổi tức thì từ chế độ cau có sang đáng yêu chỉ trong chớp mắt chính là "siêu năng lực" không ai sánh bằng của em Thiên luôn. Cảm ơn em khoảng thời gian qua.'
+        'Em Thiên đa tài vừa xinh đẹp, dễ thương lại cực kỳ giỏi giang, tháo vát trong công việc. Dù thỉnh thoảng áp lực khiến em hơi cộc cằn, nhưng khả năng chuyển đổi tức thì từ chế độ cau có sang đáng yêu chỉ trong chớp mắt chính là "siêu năng lực" không ai sánh bằng của em Thiên luôn. Cảm ơn em khoảng thời gian qua.'
       ],
       signed: '11/10/2003<i class="em-svg em-heart"></i>', // html
       nextButton: 'Tiếp tục nào',
