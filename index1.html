@@ -479,6 +479,7 @@
       if (found) {
         // Nhớ đúng người vừa đăng nhập, rồi sang trang của riêng họ
         Recipient.remember(found.code);
+        sessionStorage.setItem('isLoggedIn_' + found.code, 'true');
         $('form').fadeOut(500);
         $('.wrapper').addClass('form-success');
         setTimeout(function () {

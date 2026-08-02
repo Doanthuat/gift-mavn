@@ -608,4 +608,35 @@ var RECIPIENTS = {
     setHTML: setHTML,
     setAttr: setAttr
   };
+
+  // Tự động kiểm tra đăng nhập
+  function checkAuth() {
+    var path = global.location.pathname.toLowerCase();
+    // Bỏ qua kiểm tra nếu đang ở trang login (index1.html)
+    if (path.indexOf('index1.html') > -1) {
+      return;
+    }
+    
+    // Nếu đang ở các trang khác, yêu cầu phải có session đăng nhập hợp lệ
+    var currentCode = getRecipientCode();
+    if (global.sessionStorage.getItem('isLoggedIn_' + currentCode) !== 'true') {
+      var scripts = document.getElementsByTagName('script');
+      var rootUrl = '';
+      for (var i = 0; i < scripts.length; i++) {
+        var src = scripts[i].src;
+        if (src && src.indexOf('/js/recipients.js') > -1) {
+          rootUrl = src.substring(0, src.indexOf('/js/recipients.js'));
+          break;
+        }
+      }
+      if (rootUrl) {
+        global.location.replace(rootUrl + '/index1.html');
+      } else {
+        // Fallback for some environments
+        global.location.replace('/index1.html');
+      }
+    }
+  }
+
+  checkAuth();
 })(window);
