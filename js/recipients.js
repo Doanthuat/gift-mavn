@@ -217,7 +217,7 @@ var RECIPIENTS = {
       music: 'music/chacyeuladay.mp3',
 
       frontTitle: 'Nhật kí dễ thương',
-      name: 'Cát Tiên',
+      name: 'Em Tuyết',
       paragraphs: [
         'Thay mặt Chủ Tịch nước,Chủ tịch Quốc hội,các bộ trưởng, hơn 9 triệu dân Việt Nam cùng hơn 7 tỷ dân trên thế giới,Tặng em với sự dễ thương này &nbsp;<i class="em-svg em-blush"></i>',
         'Em xinh xắn, đáng yêu với những sức hút lạ lùng. Có lúc em thẹn thùng, e ngại như nụ hoa mỏng manh, nhưng cũng có lúc đầy bất ngờ phá cách. Trên hết, Em là một cô gái vô cùng hiểu chuyện và mang tấm lòng nhân hậu. Cảm ơn em thời gian qua.'
@@ -274,7 +274,7 @@ var RECIPIENTS = {
     /* --- Trang trái tim (tiny-heart-master/.../tim.html) --- */
     heart: {
       pageTitle: '😊',
-      bannerHeading: 'Chị Ngân...',
+      bannerHeading: 'Chị Thii...',
       bannerSub: 'Thế giới dành cho chị',
       bannerButton: 'Dẹe vào ❤',
       music: './music/phepmau.mp3',
