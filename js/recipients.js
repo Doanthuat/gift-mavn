@@ -616,7 +616,7 @@ var RECIPIENTS = {
     if (path.indexOf('index1.html') > -1) {
       return;
     }
-    
+
     // Nếu đang ở các trang khác, yêu cầu phải có session đăng nhập hợp lệ
     var currentCode = getRecipientCode();
     if (global.sessionStorage.getItem('isLoggedIn_' + currentCode) !== 'true') {
